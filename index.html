@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>서민아 (미아) 소개</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #9B5de5;
+      color: #FFFFFF;
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", sans-serif;
+      font-size: 18px;
+      line-height: 1.7;
+      word-break: keep-all;
+    }
+
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 96px 24px;
+    }
+
+    section + section { margin-top: 88px; }
+
+    .label {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 16px;
+    }
+
+    /* 1. 이름 / 소속 */
+    .name {
+      font-size: clamp(52.8px, 10.8vw, 96px);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+    .name span { font-weight: 600; opacity: 0.75; }
+    .team {
+      display: inline-block;
+      margin-top: 24px;
+      padding: 8px 18px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 999px;
+      font-size: 16px;
+    }
+
+    /* 시작하기 버튼 + 이름 파도 효과 */
+    .start-btn {
+      display: block;
+      margin-top: 32px;
+      padding: 14px 32px;
+      background: #FFFFFF;
+      color: #6C4CF1;
+      border: none;
+      border-radius: 999px;
+      font: inherit;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+    .start-btn:hover { transform: translateY(-2px); }
+    .start-btn:disabled { opacity: 0.6; cursor: default; transform: none; }
+
+    .name .char { display: inline-block; }
+    .name.waving .char {
+      animation: wave 0.6s ease-in-out 4;
+      animation-delay: calc(var(--i) * 0.06s);
+    }
+    @keyframes wave {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-0.25em); }
+    }
+
+    /* 2. 하는 일 */
+    .work {
+      font-size: clamp(20px, 3vw, 24px);
+      font-weight: 500;
+      max-width: 640px;
+    }
+
+    /* 3. 좋아하는 것 */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 32px 24px;
+      text-align: center;
+      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      background: rgba(255, 255, 255, 0.18);
+      box-shadow: 0 12px 24px rgba(40, 20, 120, 0.25);
+    }
+    .emoji { font-size: 48px; line-height: 1; margin-bottom: 16px; }
+    .card p { font-size: 18px; font-weight: 600; }
+
+    /* 모바일: 카드 세로 한 줄씩 */
+    @media (max-width: 640px) {
+      main { padding: 64px 20px; }
+      section + section { margin-top: 64px; }
+      .cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section>
+      <h1 class="name">서민아 <span>(미아)</span></h1>
+      <div class="team">모두닥 마케팅팀</div>
+      <button class="start-btn" type="button">시작하기</button>
+    </section>
+
+    <section>
+      <p class="label">What I do</p>
+      <p class="work">치과 예약자 수를 늘리기 위한 마케팅을 하고 있어요.</p>
+    </section>
+
+    <section>
+      <p class="label">Things I love</p>
+      <div class="cards">
+        <div class="card">
+          <div class="emoji">🏒</div>
+          <p>아이스하키</p>
+        </div>
+        <div class="card">
+          <div class="emoji">⚾</div>
+          <p>프로야구 직관</p>
+        </div>
+        <div class="card">
+          <div class="emoji">🌭</div>
+          <p>불닭 + 명랑핫도그</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <p class="label">모두닥에서 내가 풀고 싶은 문제</p>
+      <p class="work">더 많은 사람들이 최저가로 치과 치료를 받을 수 있었으면 좋겠어요.</p>
+    </section>
+  </main>
+
+  <script>
+    const nameEl = document.querySelector('.name');
+    const startBtn = document.querySelector('.start-btn');
+
+    // 이름의 글자를 하나씩 <span class="char">로 감싸서 따로 움직일 수 있게 함
+    let index = 0;
+    function wrapChars(node) {
+      [...node.childNodes].forEach(child => {
+        if (child.nodeType === Node.TEXT_NODE) {
+          const frag = document.createDocumentFragment();
+          [...child.textContent].forEach(ch => {
+            if (ch.trim() === '') {
+              frag.appendChild(document.createTextNode(ch));
+            } else {
+              const span = document.createElement('span');
+              span.className = 'char';
+              span.style.setProperty('--i', index++);
+              span.textContent = ch;
+              frag.appendChild(span);
+            }
+          });
+          child.replaceWith(frag);
+        } else {
+          wrapChars(child);
+        }
+      });
+    }
+    wrapChars(nameEl);
+
+    // 버튼을 누르면 약 3초 동안 파도 효과
+    startBtn.addEventListener('click', () => {
+      nameEl.classList.add('waving');
+      startBtn.disabled = true;
+      setTimeout(() => {
+        nameEl.classList.remove('waving');
+        startBtn.disabled = false;
+      }, 3000);
+    });
+  </script>
+</body>
+</html>
