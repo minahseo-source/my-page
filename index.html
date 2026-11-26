@@ -107,11 +107,41 @@
     .emoji { font-size: 48px; line-height: 1; margin-bottom: 16px; }
     .card p { font-size: 18px; font-weight: 600; }
 
+    /* 4. 요즘 빠진 것 */
+    .hobby {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .hobby-title {
+      font-size: clamp(32px, 6vw, 48px);
+      font-weight: 800;
+      line-height: 1.2;
+    }
+    .hobby-desc {
+      margin-top: 8px;
+      font-size: clamp(18px, 2.6vw, 22px);
+      font-weight: 500;
+      opacity: 0.9;
+    }
+    .chick {
+      flex-shrink: 0;
+      width: 140px;
+      height: auto;
+      animation: bob 2.4s ease-in-out infinite;
+    }
+    @keyframes bob {
+      0%, 100% { transform: translateY(0) rotate(-3deg); }
+      50% { transform: translateY(-6px) rotate(3deg); }
+    }
+
     /* 모바일: 카드 세로 한 줄씩 */
     @media (max-width: 640px) {
       main { padding: 64px 20px; }
       section + section { margin-top: 64px; }
       .cards { grid-template-columns: 1fr; }
+      .hobby { gap: 20px; }
+      .chick { width: 96px; }
     }
   </style>
 </head>
@@ -143,6 +173,43 @@
           <div class="emoji">🌭</div>
           <p>불닭 + 명랑핫도그</p>
         </div>
+      </div>
+    </section>
+
+    <section>
+      <p class="label">요즘 빠진 것</p>
+      <div class="hobby">
+        <div>
+          <p class="hobby-title">🏒 아이스하키</p>
+          <p class="hobby-desc">얼른 아이스하키 고수가 되고 싶어요!</p>
+        </div>
+        <svg class="chick" viewBox="0 0 140 150" role="img" aria-label="하키 스틱을 든 병아리">
+          <!-- 하키 스틱 -->
+          <path d="M112 30 L100 118 Q99 126 91 126 L72 126" fill="none" stroke="#8B5A2B" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- 발 -->
+          <path d="M52 128 l-6 12 M52 128 l0 13 M52 128 l6 12 M80 128 l-6 12 M80 128 l0 13 M80 128 l6 12" stroke="#FF9F1C" stroke-width="4" stroke-linecap="round"/>
+          <!-- 몸통 -->
+          <ellipse cx="66" cy="92" rx="44" ry="40" fill="#FFD93D"/>
+          <!-- 머리 -->
+          <circle cx="66" cy="54" r="34" fill="#FFE066"/>
+          <!-- 머리 깃털 -->
+          <path d="M60 22 Q62 8 70 14 Q72 4 78 16" fill="none" stroke="#FFD93D" stroke-width="5" stroke-linecap="round"/>
+          <!-- 눈 -->
+          <circle cx="54" cy="52" r="5" fill="#2B2B2B"/>
+          <circle cx="78" cy="52" r="5" fill="#2B2B2B"/>
+          <circle cx="56" cy="50" r="1.6" fill="#FFFFFF"/>
+          <circle cx="80" cy="50" r="1.6" fill="#FFFFFF"/>
+          <!-- 볼터치 -->
+          <ellipse cx="45" cy="64" rx="6" ry="4" fill="#FF8FAB" opacity="0.8"/>
+          <ellipse cx="87" cy="64" rx="6" ry="4" fill="#FF8FAB" opacity="0.8"/>
+          <!-- 부리 -->
+          <path d="M60 62 L72 62 L66 71 Z" fill="#FF9F1C" stroke="#FF9F1C" stroke-width="2" stroke-linejoin="round"/>
+          <!-- 날개 (스틱 잡는 손) -->
+          <ellipse cx="104" cy="88" rx="12" ry="18" transform="rotate(25 104 88)" fill="#F5C518"/>
+          <ellipse cx="26" cy="96" rx="11" ry="16" transform="rotate(-20 26 96)" fill="#F5C518"/>
+          <!-- 퍽 -->
+          <ellipse cx="60" cy="140" rx="10" ry="4" fill="#1E1E1E"/>
+        </svg>
       </div>
     </section>
 
